@@ -1,12 +1,32 @@
 {
   "schemaVersion": 2,
-  "revision": "initial-react-v2",
+  "revision": "2026-10-15T14:19:58.805Z",
   "site": {
     "name": "天空之城",
     "subtitle": "关于考公、科研、读书，以及生活里值得记下来的事。",
     "bio": "这里是一处整理思考和日常记录的地方。\n\n考公笔记留下练习与复盘；科研札记记录论文阅读和研究中的问题；读书、音乐与随笔，则留给那些想再次想起的片刻。\n\n不必每一篇都有结论。把问题说清楚，把经历留下来，就已经有意义。\n\n目前展示的是可替换的示例内容。你可以从写作台开始，慢慢把这里变成自己的记录。"
   },
   "entries": [
+    {
+      "id": "3f359a80-3b86-496d-bb72-a97d382093aa",
+      "type": "article",
+      "status": "published",
+      "title": "hjf",
+      "excerpt": "66666",
+      "body": "\n**- hjf6666**",
+      "category": "生活随笔",
+      "tags": [],
+      "author": "",
+      "artist": "",
+      "cover": "",
+      "link": "",
+      "bookState": "want",
+      "rating": 0,
+      "featured": false,
+      "demo": false,
+      "createdAt": "2026-10-15T14:11:01.638Z",
+      "updatedAt": "2026-10-15T14:11:46.565Z"
+    },
     {
       "id": "make-room-for-life",
       "type": "article",
@@ -18,16 +38,16 @@
       "tags": [
         "日常记录"
       ],
+      "author": "",
+      "artist": "",
+      "cover": "",
+      "link": "",
+      "bookState": "want",
+      "rating": 0,
       "featured": false,
       "demo": true,
       "createdAt": "2026-10-14T08:00:00Z",
-      "updatedAt": "2026-10-14T08:00:00Z",
-      "cover": "",
-      "link": "",
-      "author": "",
-      "artist": "",
-      "bookState": "want",
-      "rating": 0
+      "updatedAt": "2026-10-14T08:00:00Z"
     },
     {
       "id": "review-better",
@@ -41,16 +61,16 @@
         "错题复盘",
         "学习方法"
       ],
+      "author": "",
+      "artist": "",
+      "cover": "",
+      "link": "",
+      "bookState": "want",
+      "rating": 0,
       "featured": false,
       "demo": true,
       "createdAt": "2026-10-12T08:00:00Z",
-      "updatedAt": "2026-10-12T08:00:00Z",
-      "cover": "",
-      "link": "",
-      "author": "",
-      "artist": "",
-      "bookState": "want",
-      "rating": 0
+      "updatedAt": "2026-10-12T08:00:00Z"
     },
     {
       "id": "reading-paper",
@@ -64,16 +84,16 @@
         "论文阅读",
         "研究笔记"
       ],
+      "author": "",
+      "artist": "",
+      "cover": "",
+      "link": "",
+      "bookState": "want",
+      "rating": 0,
       "featured": true,
       "demo": true,
       "createdAt": "2026-10-09T08:00:00Z",
-      "updatedAt": "2026-10-09T08:00:00Z",
-      "cover": "",
-      "link": "",
-      "author": "",
-      "artist": "",
-      "bookState": "want",
-      "rating": 0
+      "updatedAt": "2026-10-09T08:00:00Z"
     },
     {
       "id": "study-growth",
@@ -86,16 +106,16 @@
       "tags": [
         "日常记录"
       ],
+      "author": "",
+      "artist": "",
+      "cover": "",
+      "link": "",
+      "bookState": "want",
+      "rating": 0,
       "featured": false,
       "demo": true,
       "createdAt": "2026-10-06T08:00:00Z",
-      "updatedAt": "2026-10-06T08:00:00Z",
-      "cover": "",
-      "link": "",
-      "author": "",
-      "artist": "",
-      "bookState": "want",
-      "rating": 0
+      "updatedAt": "2026-10-06T08:00:00Z"
     },
     {
       "id": "work-notes",
@@ -108,16 +128,16 @@
       "tags": [
         "日常记录"
       ],
+      "author": "",
+      "artist": "",
+      "cover": "",
+      "link": "",
+      "bookState": "want",
+      "rating": 0,
       "featured": false,
       "demo": true,
       "createdAt": "2026-10-03T08:00:00Z",
-      "updatedAt": "2026-10-03T08:00:00Z",
-      "cover": "",
-      "link": "",
-      "author": "",
-      "artist": "",
-      "bookState": "want",
-      "rating": 0
+      "updatedAt": "2026-10-03T08:00:00Z"
     },
     {
       "id": "reading-time",
@@ -130,16 +150,16 @@
       "tags": [
         "阅读记录"
       ],
+      "author": "",
+      "artist": "",
+      "cover": "",
+      "link": "",
+      "bookState": "want",
+      "rating": 0,
       "featured": false,
       "demo": true,
       "createdAt": "2026-09-27T08:00:00Z",
-      "updatedAt": "2026-09-27T08:00:00Z",
-      "cover": "",
-      "link": "",
-      "author": "",
-      "artist": "",
-      "bookState": "want",
-      "rating": 0
+      "updatedAt": "2026-09-27T08:00:00Z"
     },
     {
       "id": "music-night",
@@ -152,36 +172,36 @@
       "tags": [
         "日常记录"
       ],
+      "author": "",
+      "artist": "",
+      "cover": "",
+      "link": "",
+      "bookState": "want",
+      "rating": 0,
       "featured": false,
       "demo": true,
       "createdAt": "2026-09-21T08:00:00Z",
-      "updatedAt": "2026-09-21T08:00:00Z",
-      "cover": "",
-      "link": "",
-      "author": "",
-      "artist": "",
-      "bookState": "want",
-      "rating": 0
+      "updatedAt": "2026-09-21T08:00:00Z"
     },
     {
       "id": "book-0",
       "type": "book",
       "status": "published",
       "title": "瓦尔登湖",
-      "author": "亨利·戴维·梭罗",
-      "artist": "",
       "excerpt": "把目光还给自然，把时间还给自己。",
       "body": "这是一条可编辑的示例书目。\n\n可以在写作台记录阅读进度、感想与摘录，也可以换成自己的书单。",
       "category": "读书",
       "tags": [
         "阅读"
       ],
-      "featured": false,
-      "demo": true,
+      "author": "亨利·戴维·梭罗",
+      "artist": "",
       "cover": "",
       "link": "",
       "bookState": "want",
       "rating": 0,
+      "featured": false,
+      "demo": true,
       "createdAt": "2026-10-01T08:00:00Z",
       "updatedAt": "2026-10-01T08:00:00Z"
     },
@@ -190,20 +210,20 @@
       "type": "book",
       "status": "published",
       "title": "沉思录",
-      "author": "马可·奥勒留",
-      "artist": "",
       "excerpt": "在纷杂的日常里，练习与自己对话。",
       "body": "这是一条可编辑的示例书目。\n\n可以在写作台记录阅读进度、感想与摘录，也可以换成自己的书单。",
       "category": "读书",
       "tags": [
         "阅读"
       ],
-      "featured": false,
-      "demo": true,
+      "author": "马可·奥勒留",
+      "artist": "",
       "cover": "",
       "link": "",
       "bookState": "want",
       "rating": 0,
+      "featured": false,
+      "demo": true,
       "createdAt": "2026-10-01T08:00:00Z",
       "updatedAt": "2026-10-01T08:00:00Z"
     },
@@ -212,20 +232,20 @@
       "type": "music",
       "status": "published",
       "title": "天空之城",
-      "artist": "久石让",
-      "author": "",
       "excerpt": "留给安静的时候。",
       "body": "这是一条示例音乐记录。可以在写作台填写自己的收听链接，记下听见这首曲子时的心情。",
       "category": "音乐",
       "tags": [
         "纯音乐"
       ],
-      "featured": false,
-      "demo": true,
+      "author": "",
+      "artist": "久石让",
       "cover": "",
       "link": "",
       "bookState": "want",
       "rating": 0,
+      "featured": false,
+      "demo": true,
       "createdAt": "2026-10-01T08:00:00Z",
       "updatedAt": "2026-10-01T08:00:00Z"
     }
