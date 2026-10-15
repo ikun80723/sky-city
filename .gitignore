@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+work/
+*.zip
+node_modules/
+assets-original/
