@@ -1,37 +1,54 @@
-# 天空之城
-在书页与风声之间，筑一座自己的城。
+# 天空之城 · React 第二版
 
-一个奶油白、雾蓝和灰橄榄配色的个人杂志网站。内容包含考公笔记、科研札记、生活随笔、学习心得、工作思考、读书和音乐。
+一个围绕个人写作、研究笔记、书架与音乐记录的网站，包含访客阅读界面和个人写作台。
 
-## 本地预览
-进入本项目文件夹，运行：
+- 公开网站：https://ikun80723.github.io/sky-city/
+- 写作台：https://ikun80723.github.io/sky-city/#/studio
+- 研究对照：[DESIGN-RESEARCH.md](DESIGN-RESEARCH.md)
+
+## 开始使用
+
+在页面左侧或手机页尾进入“写作台”。文章、书籍和音乐均可新建、编辑、搜索、筛选、排序、移入回收站和恢复。
+
+编辑器支持 Markdown 和实时预览，未保存的编辑内容也会在当前浏览器暂存。“保存草稿”只影响本机；“保存并待发布”将内容加入待发布队列，仍不会立刻公开。
+
+## 公开发布
+
+1. 点击写作台的“连接 GitHub”。
+2. 按窗口说明，由站主创建仅授权 **sky-city** 仓库、Contents **Read and write** 的 fine-grained token，并在页面中输入。不要将令牌写入源码、文章或备份。
+3. 点击“发布到网站”，检查公开内容和本机草稿的数量，再确认发布。
+4. 页面通过 GitHub 官方 Contents API 更新 `public/data/content.json`，现有 GitHub Pages 工作流重新构建网站。
+5. 页面等待公开内容的版本更新，收到实际更新后才显示发布完成。构建较慢时会保留提交链接，不将本机保存误报为上线。
+
+令牌仅放在当前页面的内存中；刷新或关闭页面后重新连接。没有凭据的访客无法写入仓库，即便打开写作台，也只能改变自己浏览器中的工作区。
+
+其他设备发布后，旧工作区会被阻止覆盖更新。连接窗口的“拉取最新公开内容”会保留本机差异为草稿；站点介绍使用最新公开版本，拉取前可导出完整备份。
+
+## 备份与内容边界
+
+- 工作区保存在当前浏览器的 localStorage，浏览器清理数据会影响本机草稿，请定期导出。
+- 导出包括已保存的文章、草稿和回收站，不含访问令牌。
+- 编辑器里尚未点击保存的缓冲内容单独暂存；重要内容请先保存草稿再导出。
+- 公开文件只包含 `published` 内容，不包含草稿或回收站。
+- 初始内容是明确标记的示例，可在写作台逐条替换。
+
+## 本地开发
+
+需要 Node.js 22.12+ 或 24。项目默认使用现有 GitHub Pages 的相对路径部署和 hash 路由，旧文章链接保留跳转兼容。
+
+```sh
+npm ci
+npm run dev
+npm test
+npm run build
 ```
-python -m http.server 4173 --directory dist
-```
-浏览器打开 http://localhost:4173 。
 
-## 修改内容
-- 文章、分类、书单：修改 dist/content.js。首版内容均为原创示例。
-- 配色与排版：修改 dist/styles.css。
-- 首页结构：修改 dist/index.html。
-- 关于页面：修改 dist/about.html。
-- 配图：放在 dist/assets/，并使用相对路径引用。
-- 每篇文章的链接：article.html?id=文章的唯一id。
-- 音乐试听为站内原创合成音色片段，无外部音乐文件或付费服务。
+数据文件：`public/data/content.json`。界面：`src/App.jsx`。数据校验与查询：`src/model.js`。GitHub 同步：`src/github.js`。设计变量与响应式样式：`src/styles.css`。
 
-## 免费发布到 GitHub Pages
-目标公开仓库：ikun80723/sky-city。
-1. 创建空的公开 sky-city 仓库。
-2. 上传本项目的 dist 文件夹和 .github/workflows/deploy.yml，保持目录结构。
-3. 仓库 Settings → Pages → Source 选择 GitHub Actions。
-4. Actions → Deploy Sky City to GitHub Pages → Run workflow。
-5. 等待成功后访问 https://ikun80723.github.io/sky-city/ 。
+`scripts/migrate-v1.mjs` 是一次性迁移记录，不在构建流程中运行。后续更新文章不需要修改源码，也不会重新生成示例数据。
 
-如果使用网页上传，请分别上传 dist 文件夹和工作流；若上传工具会跳过隐藏目录，可以在 GitHub 上创建 .github/workflows/deploy.yml，并复制本项目对应文件内容。
-公开仓库与 GitHub Pages 的免费方案适合这个个人静态网站；网址与部署成功状态须以 GitHub 实际返回为准。
+## 验证
 
-## 素材
-- 两张页面摄影由内置 ImageGen 创作，提示词见 IMAGE-PROMPTS.md。
-- 书籍封面为原创排版，并非出版社原版封面。
-- 字体：Noto Serif SC，SIL Open Font License，许可见 dist/assets/FONT-LICENSE.txt。
-- 页面无第三方分析脚本、远程字体或外部图片依赖。
+核心测试使用独立测试数据，覆盖草稿隔离、删除恢复、搜索排序、导入校验、令牌隔离、内容冲突和跨设备拉取。不会因站主增删真实文章而破坏发布。
+
+本次另用独立浏览器逐项验收了实际增删改查、自动暂存、导出、预览和手机排版。发布请求在浏览器验收中进行了模拟；真实上线通过已连接的 GitHub 仓库完成。首次由你在网页中直接发布，需要连接自己的仓库专用令牌。
