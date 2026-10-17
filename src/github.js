@@ -3,6 +3,37 @@ import { normalizeData, publicSnapshot } from './model.js';
 const API = 'https://api.github.com';
 export const REPOSITORY = 'ikun80723/sky-city';
 export const CONTENT_PATH = 'public/data/content.json';
+export const GITHUB_SESSION_KEY = 'sky-city-github-session';
+export const GITHUB_DEVICE_KEY = 'sky-city-github-device';
+
+export function storeGithubToken(token, remember=false, session=globalThis.sessionStorage, local=globalThis.localStorage) {
+  if(!token) return;
+  try {
+    if(remember) {
+      local?.setItem(GITHUB_DEVICE_KEY,token);
+      session?.removeItem(GITHUB_SESSION_KEY);
+    } else {
+      session?.setItem(GITHUB_SESSION_KEY,token);
+      local?.removeItem(GITHUB_DEVICE_KEY);
+    }
+  } catch {
+    throw new Error('浏览器无法保存连接。请检查是否启用了无痕模式或禁用了网站存储。');
+  }
+}
+
+export function loadGithubToken(session=globalThis.sessionStorage, local=globalThis.localStorage) {
+  try {
+    const deviceToken=local?.getItem(GITHUB_DEVICE_KEY);
+    if(deviceToken) return {token:deviceToken,remember:true};
+    const sessionToken=session?.getItem(GITHUB_SESSION_KEY);
+    return sessionToken?{token:sessionToken,remember:false}:null;
+  } catch { return null; }
+}
+
+export function clearGithubToken(session=globalThis.sessionStorage, local=globalThis.localStorage) {
+  try { session?.removeItem(GITHUB_SESSION_KEY); } catch {}
+  try { local?.removeItem(GITHUB_DEVICE_KEY); } catch {}
+}
 
 function decodeBase64(value) { return new TextDecoder().decode(Uint8Array.from(atob(value.replace(/\s/g,'')),char=>char.charCodeAt(0))); }
 function encodeBase64(value) { const bytes=new TextEncoder().encode(value); let binary=''; for(let i=0;i<bytes.length;i+=8192) binary+=String.fromCharCode(...bytes.subarray(i,i+8192)); return btoa(binary); }
@@ -42,3 +73,4 @@ export async function fetchPublicContent() {
   if(!response.ok) throw new Error('暂时没能加载文章，请刷新后再试。');
   return normalizeData(await response.json());
 }
+

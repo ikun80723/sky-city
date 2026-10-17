@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {normalizeData,publicSnapshot,filterEntries,validateEntry,trashEntry,restoreEntry,rebaseWorkspace,safeUrl,fingerprint} from '../src/model.js';
-import {connectGithub,publishGithub} from '../src/github.js';
+import {connectGithub,publishGithub,storeGithubToken,loadGithubToken,clearGithubToken,GITHUB_SESSION_KEY,GITHUB_DEVICE_KEY} from '../src/github.js';
 
 const seed=()=>normalizeData({schemaVersion:2,revision:'fixture-v1',site:{name:'天空之城',subtitle:'测试用站点',bio:''},entries:Array.from({length:10},(_,i)=>({id:'fixture-'+i,type:i<7?'article':i<9?'book':'music',status:'published',title:'测试记录 '+i,body:'## 复盘\n\n用于测试的数据，与站主发布的真实内容无关。',excerpt:'方法与记录',category:i===0?'考公笔记':i===1?'科研札记':i<7?'生活随笔':i<9?'读书':'音乐',tags:['复盘'],author:'测试作者',artist:'测试音乐人',createdAt:`2026-10-${String(i+1).padStart(2,'0')}T08:00:00Z`,updatedAt:`2026-10-${String(i+1).padStart(2,'0')}T08:00:00Z`}))});
 const response=(data,status=200)=>({ok:status>=200&&status<300,status,json:async()=>data});
 const encode=value=>Buffer.from(JSON.stringify(value)).toString('base64');
+const storage=()=>{const values=new Map();return {getItem:key=>values.get(key)||null,setItem:(key,value)=>values.set(key,value),removeItem:key=>values.delete(key)};};
 
 test('publication excludes drafts and trash without changing the local workspace',()=>{const data=seed();data.entries[0].status='draft';data.entries[1].status='trash';const result=publicSnapshot(data);assert.equal(result.entries.length,data.entries.length-2);assert.ok(result.entries.every(e=>e.status==='published'));assert.equal(data.entries.length,10);});
 test('invalid published articles block the complete publication',()=>{const data=seed();data.entries[0].body='';assert.throws(()=>publicSnapshot(data),/正文/);});
@@ -21,3 +22,6 @@ test('a stale remote snapshot is never overwritten',async()=>{let writes=0;await
 test('an old browser workspace cannot overwrite changes published by another device',async()=>{const local=seed(),remote=seed();remote.revision='newer-revision';await assert.rejects(()=>publishGithub(local,{token:'test',sha:'current-sha',data:remote},async()=>{throw new Error('No request should be sent');}),/较旧的公开版本/);});
 test('pulling remote content keeps conflicting local edits as separate drafts',()=>{const local=seed(),remote=seed();local.entries[0].title='本机修改';local.entries[0].updatedAt='2026-10-15T10:00:00Z';remote.entries[0].title='另一台设备的新标题';remote.revision='newer';const merged=rebaseWorkspace(local,remote);assert.equal(merged.revision,'newer');assert.equal(merged.entries.find(e=>e.id===remote.entries[0].id).title,'另一台设备的新标题');assert.ok(merged.entries.some(e=>e.title.includes('本机修改')&&e.status==='draft'&&e.id!==remote.entries[0].id));});
 test('authentication and write failures are visible to the author',async()=>{await assert.rejects(()=>publishGithub(seed(),{token:'expired',sha:'sha'},async()=>response({},401)),/重新连接/);await assert.rejects(()=>publishGithub(seed(),{token:'restricted',sha:'sha'},async()=>response({},403)),/拒绝写入/);});
+test('GitHub connection survives refresh for the session without entering content backups',()=>{const session=storage(),local=storage();storeGithubToken('session-token',false,session,local);assert.deepEqual(loadGithubToken(session,local),{token:'session-token',remember:false});assert.equal(local.getItem(GITHUB_DEVICE_KEY),null);assert.ok(!JSON.stringify(seed()).includes('session-token'));});
+test('a personal device can remember and explicitly clear the GitHub connection',()=>{const session=storage(),local=storage();storeGithubToken('device-token',true,session,local);assert.deepEqual(loadGithubToken(session,local),{token:'device-token',remember:true});assert.equal(session.getItem(GITHUB_SESSION_KEY),null);clearGithubToken(session,local);assert.equal(loadGithubToken(session,local),null);});
+
