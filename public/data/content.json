@@ -1,12 +1,32 @@
 {
   "schemaVersion": 2,
-  "revision": "2026-10-17T03:24:03.443Z",
+  "revision": "2026-10-17T03:44:47.701Z",
   "site": {
     "name": "天空之城",
     "subtitle": "关于考公、科研、读书，以及生活里值得记下来的事。",
     "bio": "这里是一处整理思考和日常记录的地方。\n\n考公笔记留下练习与复盘；科研札记记录论文阅读和研究中的问题；读书、音乐与随笔，则留给那些想再次想起的片刻。\n\n不必每一篇都有结论。把问题说清楚，把经历留下来，就已经有意义。\n\n目前展示的是可替换的示例内容。你可以从写作台开始，慢慢把这里变成自己的记录。"
   },
   "entries": [
+    {
+      "id": "493b89a4-c84c-4c75-b06b-0846e7acfb34",
+      "type": "music",
+      "status": "published",
+      "title": "music1",
+      "excerpt": "",
+      "body": "**音乐真是一种良药**\n药物治愈身体，音乐治愈灵魂。\n",
+      "category": "音乐",
+      "tags": [],
+      "author": "",
+      "artist": "",
+      "cover": "https://p2.music.126.net/-xMsNLpquZTmMZlIztTgHg==/109951165953469081.jpg?param=130y130",
+      "link": "https://tonzhon.com/",
+      "bookState": "want",
+      "rating": 0,
+      "featured": false,
+      "demo": false,
+      "createdAt": "2026-10-17T03:25:27.829Z",
+      "updatedAt": "2026-10-17T03:35:39.701Z"
+    },
     {
       "id": "60e479c8-d564-4473-b240-f86878245175",
       "type": "article",
